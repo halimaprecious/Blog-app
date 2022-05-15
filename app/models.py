@@ -11,3 +11,14 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(150),unique = True)
     username = db.Column(db.String(150),unique = True)
     password = db.Column(db.String(150),nullable = False)
+
+
+
+
+class Quote:
+    """
+    Blueprint class for quotes consumed from API
+    """
+    def __init__(self, author, quote):
+        self.author = author
+        self.quote = quote
