@@ -2,18 +2,23 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
-
+from flask_uploads import UploadSet, configure_uploads,IMAGES
 from os import path
 
 
 db = SQLAlchemy()
 bootstrap = Bootstrap()
+photos =UploadSet('photos',IMAGES)
+
 
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'no secrets'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+
+#photo uploads config
+app.config['UPLOADED_PHOTOS_DEST'] ='app/static/photos'
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -24,6 +29,8 @@ def create_app():
    
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
+    #configure uploadset
+    configure_uploads(app,photos)
 
     #initializing flask extensions
     login_manager.init_app(app)
