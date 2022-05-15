@@ -1,10 +1,14 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
+
 from os import path
 
 
 db = SQLAlchemy()
+bootstrap = Bootstrap()
+
 
 app = Flask(__name__)
 
@@ -24,6 +28,8 @@ def create_app():
     #initializing flask extensions
     login_manager.init_app(app)
     db.init_app(app)
+    bootstrap.init_app(app)
+
 
 
 
