@@ -4,6 +4,29 @@
     box-sizing:border-box;
 }
 body{
-    background-color: rgba(240, 255, 255, 0.932);
-    color: black;
+    background-color: rgba(131, 121, 115, 0.884);
+
 }
+/* profile styling */
+.ppp{
+    float: none;
+    display: block;
+    margin: auto;
+    width: 60%;
+    height: 70%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important; 
+    border-radius: 50% !important;  
+}
+input[type="file"]{
+    background-color: transparent;
+    border: none;
+}
+input[type="submit"]{
+    background-color:  rgb(110, 51, 61); 
+    width: 20%;
+}
+#upload{
+    background-color: transparent;
+}
+

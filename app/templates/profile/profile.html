@@ -1,0 +1,49 @@
+
+ {% extends 'base.html' %}
+ {% block styles%}
+ <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+
+ {% endblock%}
+ {% block content%}
+ <div class="container">
+     <div class="row">
+         <!-- profile photo -->
+          <div class="col-md-4">
+             {% if user.profile_pic_path %}
+             <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail ppp">
+             {%else%}
+             <div class="profile-userpic">
+                <img src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                class="img-responsive" alt="" height="250" width="250">
+            </div>
+             {% endif %} <br>
+             <!-- Update photo -->
+             {% if user == current_user %}
+             <form id="upload" action="{{url_for('views.update_pic',username=user.username)}}" method="post" enctype = "multipart/form-data">
+               <input type="file"  name="photo" class="form-control" required><br>
+               <input type="submit">
+             </form>
+               {% endif %}
+         </div>
+         <div class="col-md-6">
+            <p>Username: {{user.username}} </p>
+            <!-- bio -->
+            {% if user.bio %}
+            <p>Bio:  {{user.bio}}</p>
+            <p>Email: {{user.email}}</p>
+            {%else%}
+                <p> {{user.username}} has no bio </p>
+            {% endif %}
+            <!-- update -->
+            {% if user == current_user %}
+            <a href="{{url_for('views.update_profile',username=user.username)}}">Edit profile</a>
+            {% endif %}
+        </div>
+     </div> <br><br>
+     <hr>
+     <div class="row">
+         <h5>My Posts</h5>
+     </div>
+ </div>
+ {% endblock %}
+ 

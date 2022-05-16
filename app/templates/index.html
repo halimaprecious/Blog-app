@@ -1,16 +1,18 @@
 {% extends 'base.html'%}
 {% block content%}
-  <header class="masthead" style="background-image: url('https://picsum.photos/1900/1267?grayscale'); margin-top: 40px;">
+  <header class="quote" style="background-image: url('https://picsum.photos/1900/1267?grayscale'); margin-top: 45px;">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <span class="subheading"><i class="fas fa-quote-left"></i> <em>{{quote.quote}}</em> <i class="fas fa-quote-right"></i></span>
-            <h2>{{quote.author}}</h2>
+            <span class="subheading"><i class="fas fa-quote-left"></i> <em>{{quote.quote}}</em> <i class="fas fa-quote-right"></i></span><br>
+            <small>~ {{quote.author}} ~</small>
           </div>
         </div>
       </div>
     </div>
   </header>
+  <!-- content -->
+ 
   {% endblock%}

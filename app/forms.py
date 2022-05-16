@@ -4,8 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class UpdateProfile(FlaskForm):
-    first_name = StringField("First name")
-    last_name = StringField("Last Name")
+    username =StringField("Username")
     bio = TextAreaField("Bio")
     email = StringField("Email")
     submit = SubmitField("Update") 
