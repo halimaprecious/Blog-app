@@ -29,4 +29,9 @@ input[type="submit"]{
 #upload{
     background-color: transparent;
 }
-
+.card{
+    background-color:rgb(122, 73, 90);
+    /* justify-content: center;
+    align-items: center;
+    display: flex; */
+}

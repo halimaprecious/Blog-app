@@ -11,8 +11,9 @@ views = Blueprint("views",__name__)
 def home():
    quote = find_quote()
    posts = Post.query.all()
+   user = User.query.all()
 
-   return render_template('index.html',quote = quote,posts=posts)
+   return render_template('index.html',quote = quote,posts=posts,user=user)
 
 
 #user profile
