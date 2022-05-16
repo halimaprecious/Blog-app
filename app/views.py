@@ -2,18 +2,17 @@ from flask import Blueprint, render_template,flash, request,redirect,session,url
 from flask_login import login_required,current_user
 from .models import User,Post
 from .requests import find_quote
-from .forms import UpdateProfile
+from .forms import UpdateProfile,PostForm
 from . import db, photos
 
 views = Blueprint("views",__name__)
 
 @views.route('/',methods = ['POST','GET'])
 def home():
-    quote = find_quote()
-    posts = Post.query.filter_by().all()
-    
-   
-    return render_template('index.html',quote = quote,)
+   quote = find_quote()
+   posts = Post.query.all()
+
+   return render_template('index.html',quote = quote,posts=posts)
 
 
 #user profile
@@ -54,3 +53,21 @@ def update_pic(username):
       user.profile_pic_path = path
       db.session.commit()
    return redirect(url_for('views.profile',username=username))
+
+# write post
+@views.route('/post/',methods=['GET','POST'])
+@login_required
+def post():
+
+   form =PostForm()
+   if form.validate_on_submit():
+      title= form.title.data
+      text =form.text.data
+     
+      post = Post(title=title,text=text)
+      db.session.add(post)
+      db.session.commit()
+   
+      return redirect(url_for('views.home'))
+
+   return render_template('post.html',user=current_user,form =form)

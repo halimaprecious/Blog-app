@@ -8,3 +8,8 @@ class UpdateProfile(FlaskForm):
     bio = TextAreaField("Bio")
     email = StringField("Email")
     submit = SubmitField("Update") 
+
+class PostForm(FlaskForm):
+    title = StringField("Title")
+    text = TextAreaField('Post', validators=[DataRequired()])
+    submit = SubmitField('Post')

@@ -19,7 +19,7 @@ class Post(db.Model):
     title =db.Column(db.String(100),nullable =False)
     text = db.Column(db.Text,nullable=False)
     date_created = db.Column(db.DateTime(timezone=True),default=func.now())
-  
+
 
 
 
