@@ -7,6 +7,18 @@ body{
     background-color: rgba(131, 121, 115, 0.884);
 
 }
+/* navbar */
+.navbar{
+    background-color:rgb(122, 73, 90);
+
+}
+
+.logo{
+    font-family: 'Macondo', cursive;
+    font-size: 45px;
+    text-decoration: none;
+    color:black;
+}
 /* profile styling */
 .ppp{
     float: none;
@@ -29,9 +41,30 @@ input[type="submit"]{
 #upload{
     background-color: transparent;
 }
+/* posts section */
 .card{
     background-color:rgb(122, 73, 90);
-    /* justify-content: center;
+   
+}
+.container1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    display: flex; */
+}
+/* login-forms */
+.login{
+    background: rgba( 255, 255, 255, 0.2 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width:60%;
+    padding:5%
+}
+.log{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

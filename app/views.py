@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template,flash, request,redirect,session,url_for
 from flask_login import login_required,current_user
-from .models import User,Post
+from .models import User,Post,Like,Comment
 from .requests import find_quote
 from .forms import UpdateProfile,PostForm
 from . import db, photos
@@ -12,7 +12,6 @@ def home():
    quote = find_quote()
    posts = Post.query.all()
    user = User.query.all()
-
    return render_template('index.html',quote = quote,posts=posts,user=user)
 
 
@@ -72,3 +71,42 @@ def post():
       return redirect(url_for('views.home'))
 
    return render_template('post.html',user=current_user,form =form)
+
+
+# comments route
+@views.route('/comment/<post_id>',methods=['POST'])
+@login_required
+def comment(post_id):
+   text = request.form.get('text')
+
+   if not text:
+      flash('comment cannot be empty',category='error')
+   else:
+      post = Post.query.filter_by(id=post_id)
+      if post:
+         comment = Comment(text = text, author=current_user.id, post_id= post_id)
+         db.session.add(comment)
+         db.session.commit()
+      else:
+         flash('Post does not exist!',category='error')
+       
+   return redirect(url_for('views.home'))
+
+# likes route
+@views.route('/like/<post_id>',methods=['GET'])
+@login_required
+def like(post_id):
+   post = Post.query.filter_by(id=post_id).first()
+   like =Like.query.filter_by(author=current_user.id, post_id = post_id).first()
+   
+   if not post:
+      flash('Post does not exist',category='error')
+   elif like:
+      db.session.delete(like)
+      db.session.commit()
+   else:
+      like = Like(author=current_user.id, post_id=post_id)
+      db.session.add(like)
+      db.session.commit()
+
+   return redirect(url_for('views.home'))
