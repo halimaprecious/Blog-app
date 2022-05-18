@@ -19,8 +19,6 @@ def home():
 @views.route('/user/<username>')
 def profile(username):
    user = User.query.filter_by(username=username).first()
-   if not user:
-      flash("User does not exist!",category='error')
 
    return render_template("profile/profile.html", user = user)
 
@@ -71,7 +69,6 @@ def post():
       return redirect(url_for('views.home'))
 
    return render_template('post.html',user=current_user,form =form)
-
 
 # comments route
 @views.route('/comment/<post_id>',methods=['POST'])

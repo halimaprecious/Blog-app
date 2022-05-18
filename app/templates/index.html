@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 {% block content%}
-  <header class="quote" style="background-image: url('https://picsum.photos/1900/1267?grayscale'); margin-top: 10px;">
+  <header class="quote" style="background-image: url('https://picsum.photos/1900/1267?grayscale')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -13,20 +13,18 @@
           <div class="site-heading">
             <span class="subheading"><i class="fas fa-quote-left"></i> <em>{{quote.quote}}</em> <i
                 class="fas fa-quote-right"></i></span><br>
-            <small>~ {{quote.author}} ~</small>
+            <h2>~ {{quote.author}} ~ </h2>
           </div>
         </div>
       </div>
     </div>
-  </header><br>
+  </header>
 <!-- posts -->
-<a href="/post/"class="text-white">Create a post</a>
-
-<div class="container1">
+<div class="container-fluid cont">
   {% for post in posts[::-1] %}
-  <div class="col-md-8">
+  <div class="col-md-6">
     <div class="card">
-      <div class="card-title d-flex justify-content-between align-items-center">
+      <div class="card-header d-flex justify-content-between align-items-center">
         <h3>{{post.title}}</h3>
         <div>{{post.likes|length}}
           {% if user.id in post.likes|map(attribute="author")|list %}
@@ -36,11 +34,11 @@
           {% endif %}
         </div>
       </div>
-      <div class="card-body">
+      <div class="card-body ">
         <div class="card-text">{{post.text}}</div><br>
         <div class="collapse" id="comments-{{post.id}}">
-          <div class="card">
-            <div class="card-body" id="comments-expanded-{{post.id}}">
+          
+            <div class="card-text" id="comments-expanded-{{post.id}}">
               {% for comment in post.comments %}
               <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -48,16 +46,16 @@
                   {{comment.text}}
                 </div>
                 <div>
-                  <small class="text-muted">{{comment.date_created}}</small>
+                  <small class="text-muted">{{comment.date_created.strftime('%B %d, %Y')}}</small>
                 </div>
               </div>
               {%endfor%}
             </div>
-          </div>
+          
         </div>
         <p class="card-text">
           {% if post.comments|length > 0 %}
-          <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
+          <a data-bs-toggle="collapse" class="text-white" href="#comments-{{post.id}}" role="button">
             <small>View {{post.comments|length}} Comments</small>
           </a>
           {% else %}
@@ -65,18 +63,19 @@
           {% endif %}
         </p>
         <form class="input-group mb-3" method="POST" action="/comment/{{post.id}}">
-          <input type="text" id="text" name="text" class="form-control" placeholder="Write a comment">
-          <button type="submit" class="btn btn-warning">Comment</button>
+          <input type="text" id="text" name="text" class="form-control" placeholder="Write a comment"> <br>
+          <button type="submit" class="btn comment">Comment</button>
         </form>
       </div>
       <div class="card-footer d-flex justify-content-between align-items-center text-muted"> 
        <a href="/profile/{{post.user.username}}"> Posted by:{{post.author.username}}</a>
-        <span>On:  {{post.date_created}}</span> 
+        <span>On:  {{post.date_created.strftime('%B %d, %Y')}}</span> 
       <a href="/post/"class="text-white">Create a post</a>
       </div>
     </div>
   </div>
   <br>
+  <hr>
   {% endfor %}
 </div>
 

@@ -2,30 +2,67 @@
     margin: 0;
     padding:0;
     box-sizing:border-box;
+    /* overflow-x: hidden; */
 }
 body{
     background-color: rgba(131, 121, 115, 0.884);
-
 }
 /* navbar */
 .navbar{
     background-color:rgb(122, 73, 90);
-
 }
-
 .logo{
     font-family: 'Macondo', cursive;
     font-size: 45px;
     text-decoration: none;
-    color:black;
+    color: #e6d8d5;
+}
+/* quote */
+.quote{
+    margin-bottom: 50px;
+    background: no-repeat center center;
+    background-color: #868e96;
+    background-attachment: scroll;
+    position: relative;
+    background-size: cover;
+    height: 60vh; 
+    width: 100%;
+}
+header.quote .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #282c30;
+    opacity: 0.5;
+  }
+.subheading
+{
+    text-align: center;
+    font-size: 24px;
+    font-weight:bold;
+    line-height: 1.1;
+    display: block;
+    margin: 10px 0 0;
+    color: rgb(151, 79, 53) !important;
+    font-family: 'Macondo', cursive;
+}
+h2{
+    font-size: 24px;
+    font-weight:bold;
+    text-align: center;
+    color:white !important; 
+    font-family: 'Macondo', cursive;
+
 }
 /* profile styling */
 .ppp{
     float: none;
     display: block;
     margin: auto;
-    width: 60%;
-    height: 70%;
+    /* width: 50%; */
+    height: 50%;
     -webkit-border-radius: 50% !important;
     -moz-border-radius: 50% !important; 
     border-radius: 50% !important;  
@@ -43,10 +80,15 @@ input[type="submit"]{
 }
 /* posts section */
 .card{
-    background-color:rgb(122, 73, 90);
-   
+    color: #7D5A50;
+    background: rgba( 255, 255, 255, 0.2 );
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding:5% 
 }
-.container1{
+.cont{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,7 +97,7 @@ input[type="submit"]{
 /* login-forms */
 .login{
     background: rgba( 255, 255, 255, 0.2 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    /* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
     backdrop-filter: blur( 6.5px );
     -webkit-backdrop-filter: blur( 6.5px );
     border-radius: 10px;

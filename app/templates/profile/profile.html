@@ -1,11 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock %}
 
- {% extends 'base.html' %}
  {% block styles%}
  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-
  {% endblock%}
+
  {% block content%}
- <div class="container">
+ <div class="container mt-5">
      <div class="row">
          <!-- profile photo -->
           <div class="col-md-4">
@@ -26,24 +27,22 @@
                {% endif %}
          </div>
          <div class="col-md-6">
-            <p>Username: {{user.username}} </p>
+            <h4>Username: <em>{{user.username}}</em> </h4>
             <!-- bio -->
             {% if user.bio %}
-            <p>Bio:  {{user.bio}}</p>
-            <p>Email: {{user.email}}</p>
+            <h4>Email: <small><em>{{user.email}}</em></small></h4>
+            <h4>Bio:  {{user.bio}}</h4>
             {%else%}
                 <p> {{user.username}} has no bio </p>
             {% endif %}
             <!-- update -->
             {% if user == current_user %}
-            <a href="{{url_for('views.update_profile',username=user.username)}}">Edit profile</a>
+            <a href="{{url_for('views.update_profile',username=user.username)}}" class="text-white">Edit profile</a>
             {% endif %}
+            <br> <br>
+            <em><a href="/post/"class="text-white">Create a post</a></em>
+
         </div>
      </div> <br><br>
-     <hr>
-     <div class="row">
-         <h5>My Posts</h5>
-     </div>
- </div>
  {% endblock %}
  
