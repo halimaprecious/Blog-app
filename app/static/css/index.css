@@ -21,7 +21,7 @@ body{
 .quote{
     margin-bottom: 50px;
     background: no-repeat center center;
-    background-color: #868e96;
+    background-color: #4b4e52;
     background-attachment: scroll;
     position: relative;
     background-size: cover;
@@ -45,7 +45,7 @@ header.quote .overlay {
     line-height: 1.1;
     display: block;
     margin: 10px 0 0;
-    color: rgb(151, 79, 53) !important;
+    color: white !important;
     font-family: 'Macondo', cursive;
 }
 h2{

@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template,flash, request,redirect,session,url_for
 from flask_login import login_required,current_user
-from .models import User,Post,Like,Comment
+from .models import User,Post,Like,Comment,Subscribers
 from .requests import find_quote
 from .forms import UpdateProfile,PostForm
 from . import db, photos
+from .email import mail_message, notification_message
 
 views = Blueprint("views",__name__)
 
@@ -12,6 +13,15 @@ def home():
    quote = find_quote()
    posts = Post.query.all()
    user = User.query.all()
+
+
+   if request.method == "POST":
+        new_sub = Subscribers(email = request.form.get("subscriber"))
+        db.session.add(new_sub)
+        db.session.commit()
+        mail_message("Thank you for subscribing to the Poetry blog", 
+                        "email/welcome", new_sub.email)
+
    return render_template('index.html',quote = quote,posts=posts,user=user)
 
 
@@ -19,6 +29,14 @@ def home():
 @views.route('/user/<username>')
 def profile(username):
    user = User.query.filter_by(username=username).first()
+
+
+   if request.method == "POST":
+        new_sub = Subscribers(email = request.form.get("subscriber"))
+        db.session.add(new_sub)
+        db.session.commit()
+        mail_message("Thank you for subscribing to the Poetry blog", 
+                        "email/welcome", new_sub.email)
 
    return render_template("profile/profile.html", user = user)
 
@@ -66,6 +84,10 @@ def post():
       db.session.add(post)
       db.session.commit()
    
+      subs = Subscribers.query.all()
+      for sub in subs:
+            notification_message(title, 
+                            "email/notification", sub.email, post = post)
       return redirect(url_for('views.home'))
 
    return render_template('post.html',user=current_user,form =form)

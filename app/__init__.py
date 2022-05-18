@@ -3,21 +3,32 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
-
+from flask_admin import Admin
+from flask_mail import Mail
 from flask_uploads import UploadSet, configure_uploads,IMAGES
 from os import path
+import os
 
 
 db = SQLAlchemy()
 bootstrap = Bootstrap()
 photos =UploadSet('photos',IMAGES)
-migrate = Migrate()
-
+# migrate = Migrate()
+admin = Admin()
+mail = Mail()
 
 app = Flask(__name__)
-
+migrate = Migrate(app, db)
 app.config['SECRET_KEY'] = 'no secrets'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+
+#email config
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
+app.config['MAIL_PASSWORD'] =  os.environ.get("MAIL_PASSWORD")
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
 #photo uploads config
 app.config['UPLOADED_PHOTOS_DEST'] ='app/static/photos'
@@ -38,8 +49,8 @@ def create_app():
     login_manager.init_app(app)
     db.init_app(app)
     bootstrap.init_app(app)
-    migrate.init_app(app, db)
-
+    admin.init_app(app)
+    mail.init_app(app)
 
 
 
