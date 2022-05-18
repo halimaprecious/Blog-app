@@ -64,7 +64,7 @@ To fix a bug or enhance an existing module, follow these steps:
 ## Known Bugs
 - Images do not display from db. 
 
-If you find a bug or would like to request a new function, reach out to me via Email: halimaprecious3@gmail.com@gmail.com 
+If you find a bug or would like to request a new function, reach out to me via Email: halimaprecious3@gmail.com 
 
 ## Future Plans
 - Display the owner of the blog.
