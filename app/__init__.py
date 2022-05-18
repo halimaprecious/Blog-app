@@ -3,7 +3,6 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
-from flask_admin import Admin
 from flask_mail import Mail
 from flask_uploads import UploadSet, configure_uploads,IMAGES
 from os import path
@@ -13,8 +12,7 @@ import os
 db = SQLAlchemy()
 bootstrap = Bootstrap()
 photos =UploadSet('photos',IMAGES)
-# migrate = Migrate()
-admin = Admin()
+
 mail = Mail()
 
 app = Flask(__name__)
@@ -49,7 +47,6 @@ def create_app():
     login_manager.init_app(app)
     db.init_app(app)
     bootstrap.init_app(app)
-    admin.init_app(app)
     mail.init_app(app)
 
 
