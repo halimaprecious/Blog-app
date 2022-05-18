@@ -1,19 +1,18 @@
-#### Sincerely Emma
+#### Poets-blog
 
-Personal blog website where I can create and share my opinions and other users can read and comment on them. Additionally, has a feature that displays random quotes to inspire my users.
+A Personal blog website where I can express and share my poems and other users can read and comment on them. It also has a feature that displays random quotes to inspire my users.
 
 ## Technology used
 1. Python
 2. Flask
 3. HTML
-4. CSS3
-5. PostgresSQL
+4. PostgresSQL
 
 ## Requirements
 An IDE such as VS code with Python version 3 installed,a terminal and a browser. 
 
 ## Setup and Instruction
-1. Clone the repository at [here](https://github.com/emmakamau/Emma-Blog.git).
+1. Clone the repository at [here](https://github.com/halimaprecious/Blog-app.git).
 2. Extract and open the folder on VS code or navigate to the folder on your terminal.
 3. On the terminal, create a virtual environment `python3 -m venv virtual` and activate it `source virtual/bin/activate`. NB **virtual** is the name of the environment.
 4. Pip install dependancies highlighted on the **requirements.txt** by running `pip install -r requirements.txt`
@@ -72,6 +71,7 @@ If you find a bug or would like to request a new function, reach out to me via E
 - Ability to delete blog posts that have been voted or commented on.
 - Save and display images from
 - Ability to navigate to other users profiles.
+- Enable user subscription to my blog.
 
 ## License
 
